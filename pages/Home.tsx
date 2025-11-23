@@ -32,24 +32,24 @@ const Home: React.FC = () => {
   const column3 = PORTFOLIO_IMAGES.slice(chunkSize * 2, chunkSize * 3);
   const column4 = PORTFOLIO_IMAGES.slice(chunkSize * 3);
 
-  // Define Multi-directional Parallax Transforms with more drift
+  // Define Multi-directional Parallax Transforms with reduced drift for more control
   // Y = Vertical Speed (Negative moves up), X = Horizontal Drift
   
-  // Col 1: Moves up fast, Drifts Left then slightly Right
-  const y1 = useTransform(smoothScrollY, [0, 2000], [0, isDesktop ? -800 : 0]);
-  const x1 = useTransform(smoothScrollY, [0, 2000], [0, isDesktop ? -150 : 0]);
+  // Col 1: Moves up fast, slight controlled drift
+  const y1 = useTransform(smoothScrollY, [0, 2000], [0, isDesktop ? -600 : 0]);
+  const x1 = useTransform(smoothScrollY, [0, 2000], [0, isDesktop ? -50 : 0]);
 
-  // Col 2: Moves up slow, Drifts Right
-  const y2 = useTransform(smoothScrollY, [0, 2000], [0, isDesktop ? -400 : 0]);
-  const x2 = useTransform(smoothScrollY, [0, 2000], [0, isDesktop ? 80 : 0]);
+  // Col 2: Moves up slow, slight controlled drift
+  const y2 = useTransform(smoothScrollY, [0, 2000], [0, isDesktop ? -300 : 0]);
+  const x2 = useTransform(smoothScrollY, [0, 2000], [0, isDesktop ? 30 : 0]);
 
-  // Col 3: Moves up medium, Drifts Left
-  const y3 = useTransform(smoothScrollY, [0, 2000], [0, isDesktop ? -600 : 0]);
-  const x3 = useTransform(smoothScrollY, [0, 2000], [0, isDesktop ? -40 : 0]);
+  // Col 3: Moves up medium, slight controlled drift
+  const y3 = useTransform(smoothScrollY, [0, 2000], [0, isDesktop ? -450 : 0]);
+  const x3 = useTransform(smoothScrollY, [0, 2000], [0, isDesktop ? -20 : 0]);
 
-  // Col 4: Moves up very fast, Drifts Right away from center
-  const y4 = useTransform(smoothScrollY, [0, 2000], [0, isDesktop ? -900 : 0]);
-  const x4 = useTransform(smoothScrollY, [0, 2000], [0, isDesktop ? 160 : 0]);
+  // Col 4: Moves up faster, slight controlled drift
+  const y4 = useTransform(smoothScrollY, [0, 2000], [0, isDesktop ? -700 : 0]);
+  const x4 = useTransform(smoothScrollY, [0, 2000], [0, isDesktop ? 60 : 0]);
 
   // Helper to get deterministic "scattered" styling based on index
   const getImageStyles = (index: number) => {
@@ -58,11 +58,11 @@ const Home: React.FC = () => {
      const width = widths[index % widths.length];
 
      // Vary alignment within the column flex container to create "messy" look
-     const alignments = ['self-start', 'self-center', 'self-end', 'ml-8', 'mr-12', 'self-start'];
+     const alignments = ['self-start', 'self-center', 'self-end', 'ml-4', 'mr-6', 'self-start'];
      const alignment = alignments[index % alignments.length];
 
-     // Add aggressive random top margins to break grid rhythm completely
-     const margins = ['mt-12', 'mt-48', 'mt-8', 'mt-64', 'mt-24', 'mt-32'];
+     // Add random top margins to break grid rhythm, but less aggressive than before
+     const margins = ['mt-8', 'mt-24', 'mt-4', 'mt-32', 'mt-12', 'mt-16'];
      const margin = margins[index % margins.length];
 
      // Random aspect ratios
@@ -123,13 +123,12 @@ const Home: React.FC = () => {
               <span>Ahmad</span>
             </h1>
             <div className="flex justify-center items-center w-full max-w-[90vw] md:max-w-[60vw] mx-auto mt-6">
-                <span className="text-white text-xs md:text-lg font-['JetBrains_Mono'] tracking-widest opacity-70">2025</span>
             </div>
         </div>
       </div>
 
       {/* Irregular Parallax Grid Container */}
-      <section aria-label="Selected Works" className="relative w-full max-w-[1920px] mx-auto px-4 md:px-12 pt-40 md:pt-[20vh] pb-40 z-10 pointer-events-none md:pointer-events-auto min-h-[150vh]">
+      <section id="home" aria-label="Selected Works" className="relative w-full max-w-[1920px] mx-auto px-4 md:px-12 pt-40 md:pt-[20vh] pb-40 z-10 pointer-events-none md:pointer-events-auto min-h-[150vh]">
         <GridPattern
           width={30}
           height={30}
@@ -164,8 +163,12 @@ const Home: React.FC = () => {
 
       {/* Connected Sections: About then Contact */}
       <div className="relative z-30 bg-[#0a0a0a] -mt-0 md:-mt-32 pt-32 shadow-[0_-50px_100px_rgba(10,10,10,1)]">
-         <About />
-         <Contact />
+         <div id="about">
+            <About />
+         </div>
+         <div id="contact">
+            <Contact />
+         </div>
       </div>
 
     </div>

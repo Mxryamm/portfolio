@@ -24,7 +24,7 @@ const Contact: React.FC = () => {
             <div className="space-y-6 md:space-y-8">
                 <div>
                     <h3 className="text-xs font-mono uppercase tracking-widest text-stone-500 mb-2">Email</h3>
-                    <a href="mailto:hello@portfolio.design" className="text-xl md:text-2xl hover:text-stone-300 transition-colors break-words">hello@portfolio.design</a>
+                    <a href="mailto:maryamahmt@gmail.com" className="text-xl md:text-2xl hover:text-stone-300 transition-colors break-words">maryamahmt@gmail.com</a>
                 </div>
                 <div>
                     <h3 className="text-xs font-mono uppercase tracking-widest text-stone-500 mb-2">Socials</h3>
@@ -39,7 +39,13 @@ const Contact: React.FC = () => {
 
         {/* Form */}
         <div className="flex-1">
-            <form className="space-y-6 md:space-y-8" onSubmit={(e) => e.preventDefault()} aria-label="Contact form">
+            <form 
+                className="space-y-6 md:space-y-8" 
+                action="mailto:maryamahmt@gmail.com" 
+                method="post" 
+                enctype="text/plain"
+                aria-label="Contact form"
+            >
                 <div className="space-y-2">
                     <label htmlFor="name" className="text-xs font-mono uppercase tracking-widest text-stone-500">Name</label>
                     <input 
@@ -70,7 +76,7 @@ const Contact: React.FC = () => {
                         aria-required="true"
                         rows={4}
                         className="w-full bg-transparent border-b border-stone-800 py-3 md:py-4 text-lg md:text-xl focus:outline-none focus:border-white transition-colors resize-none placeholder-stone-700"
-                        placeholder="Tell me about your project..."
+                        placeholder="Let's have a chat..."
                     />
                 </div>
 
